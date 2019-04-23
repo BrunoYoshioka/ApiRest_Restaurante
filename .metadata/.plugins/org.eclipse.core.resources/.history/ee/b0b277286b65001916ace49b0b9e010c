@@ -1,0 +1,34 @@
+package teste;
+
+import java.sql.Connection;
+import java.util.ArrayList;
+
+import com.restaurante.jdbc.CNXJDBC;
+import com.restaurantes.apirest.dao.RestauranteDAO;
+import com.restaurantes.apirest.models.Restaurante;
+
+public class Principal {
+
+	public static void main(String[] args) {
+		
+		//Connection c = CNXJDBC.conectar();
+		
+		//if(c==null)
+			//System.out.println("Erro ao conectar o banco");
+		//else
+			//System.out.println("Banco conectado com sucesso");
+		
+		RestauranteDAO resDao = new RestauranteDAO();
+		Restaurante umRes = new Restaurante();
+		
+		umRes.setId(1);
+		umRes.setNome("Aspásia");
+		
+		resDao.inserirRestaurante(umRes);
+		
+		ArrayList<Restaurante> listRestaurantes = resDao.listarTodosRestaurantes();
+		for(Restaurante umRestaurante : listRestaurantes)
+			System.out.println(umRestaurante.toString());
+	}
+
+}

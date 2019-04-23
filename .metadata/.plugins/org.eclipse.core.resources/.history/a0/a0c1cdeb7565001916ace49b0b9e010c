@@ -1,0 +1,52 @@
+package teste;
+
+import java.sql.Connection;
+import java.util.ArrayList;
+
+import com.restaurante.jdbc.CNXJDBC;
+import com.restaurantes.apirest.dao.RestauranteDAO;
+import com.restaurantes.apirest.models.Restaurante;
+
+public class Principal {
+
+	public static void main(String[] args) {
+		
+		/**
+		 * Verificação do Banco conectado ou não
+		 */
+		Connection c = CNXJDBC.conectar();
+		
+		if(c==null)
+			System.out.println("Erro ao conectar o banco");
+		else
+			System.out.println("Banco conectado com sucesso");
+		
+		
+		/**
+		 * Testar o método inserir
+		 */
+		// Utilizamos o objeto do tipo RestauranteDAO
+		RestauranteDAO resDao = new RestauranteDAO();
+		// Precisamos de um objeto do tipo restaurante
+		Restaurante umRes = new Restaurante();
+		
+		// Setar o valor do nome
+		umRes.setNome("Bar do Argentino");
+		umRes.setId(3);
+		
+		/**
+		 * Retorna todos os Restaurantes cadastrados, percorrendo todos os
+		 * itens de ocorrências no banco de dados
+		 */
+		resDao.inserirRestaurante(umRes);
+		
+		ArrayList<Restaurante> listRestaurantes = resDao.listarTodosRestaurantes();
+		for(Restaurante umRestaurante : listRestaurantes)
+			System.out.println(umRestaurante.toString());
+		
+		/**
+		 * 
+		 */
+	}
+
+}

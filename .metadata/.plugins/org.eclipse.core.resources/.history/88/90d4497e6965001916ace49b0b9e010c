@@ -1,0 +1,19 @@
+package teste;
+
+import java.sql.Connection;
+
+import com.restaurante.jdbc.CNXJDBC;
+
+public class Principal {
+
+	public static void main(String[] args) {
+		
+		Connection c = CNXJDBC.conectar();
+		
+		if(c==null)
+			System.out.println("Erro ao conectar o banco");
+		else
+			System.out.println("Banco conectado com sucesso");
+	}
+
+}

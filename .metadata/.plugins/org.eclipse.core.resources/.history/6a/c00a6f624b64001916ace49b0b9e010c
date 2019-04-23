@@ -1,0 +1,38 @@
+package com.restaurantes.apirest.resources;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.restaurantes.apirest.repository.RestauranteRepository;
+import com.restaurantes.apirest.models.Restaurante;
+
+@RestController
+@RequestMapping(value="/api")
+public class RestauranteResource {
+	
+	@Autowired
+	RestauranteRepository restauranteRepository;
+	
+	@GetMapping("/restaurantes")
+	public List<Restaurante> listaRestaurantes(){
+		return restauranteRepository.findAll();
+	}
+	
+	@GetMapping("/restaurante/{id}")
+	public Restaurante listaRestauranteUnico(@PathVariable(value="id") long id){
+		return restauranteRepository.findById(id);
+	}
+	
+	@PostMapping("/restaurante")
+	public Restaurante salvarRestaurante(@RequestBody Restaurante restaurante) {
+		return restauranteRepository.save(restaurante);
+	}
+
+}

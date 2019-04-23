@@ -1,0 +1,5 @@
+package com.restaurantes.apirest.models;
+
+public class Restaurante {
+
+}

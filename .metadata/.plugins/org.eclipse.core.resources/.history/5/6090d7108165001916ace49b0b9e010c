@@ -1,0 +1,15 @@
+package com.restaurantes.apirest;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import teste.Principal;
+
+@SpringBootApplication
+public class ApirestApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Principal.class, args);
+	}
+
+}

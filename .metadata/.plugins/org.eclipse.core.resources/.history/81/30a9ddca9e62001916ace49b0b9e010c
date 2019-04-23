@@ -1,0 +1,5 @@
+package com.restaurantes.apirest.resources;
+
+public class RestauranteResource {
+
+}

@@ -1,0 +1,17 @@
+package com.restaurante.jdbc;
+
+public class CNXJDBC {
+	
+	private final String DRIVER_CLASS = "org.hsqldb.jdbcDriver";
+	
+	public void conectar() {
+		
+		try {
+			Class.forName(DRIVER_CLASS);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}

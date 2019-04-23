@@ -1,0 +1,5 @@
+package com.restaurantes.apirest.dao;
+
+public class RestauranteDAO {
+
+}

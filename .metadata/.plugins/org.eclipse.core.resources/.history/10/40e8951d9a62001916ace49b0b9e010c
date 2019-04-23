@@ -1,0 +1,5 @@
+package com.restaurantes.apirest.repository;
+
+public interface RestauranteRepository {
+
+}

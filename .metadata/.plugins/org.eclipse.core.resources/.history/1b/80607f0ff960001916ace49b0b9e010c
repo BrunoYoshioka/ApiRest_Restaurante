@@ -1,0 +1,27 @@
+package com.restaurante.jdbc;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class CNXJDBC {
+	
+	private final String DRIVER_CLASS = "org.hsqldb.jdbcDriver";
+	private Connection cnx = null;
+	private String user = "sa";
+	private String password = "";
+	private String PathBase = "";
+	private final String URL = "jdbc:hsqldb:file:" + PathBase;
+	
+	public void conectar() {
+		
+		try {
+			Class.forName(DRIVER_CLASS);
+			//Estabelendo conexão
+			cnx = DriverManager.getConnection(url, user, password);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}

@@ -1,0 +1,56 @@
+package com.restaurantes.apirest.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import com.restaurante.jdbc.CNXJDBC;
+import com.restaurantes.apirest.models.Restaurante;
+
+public class RestauranteDAO {
+	private final String SQL_INSERE_RESTAURANTE= "INSERT INTO \"PUBLIC\",\"RESTAURANTES\"(\"NOME\", \"EMAIL\" ) VALUES (?, ?);";
+	private final String SQL_ALTERA_RESTAURANTE= "UPDATE RESTAURANTES SET NOME=? WHERE ID=?;";
+	private final String SQL_EXCLUI_RESTAURANTE= "DELETE FROM RESTAURANTES WHERE ID=?;";
+	private final String SQL_SELECIONA_RESTAURANTE= "SELECT * FROM RESTAURANTES";
+	
+	private PreparedStatement pst = null;
+	
+	public boolean inserirRestaurante(Restaurante umRestaurante) {
+		boolean ret = false;
+		Connection conn = CNXJDBC.conectar();
+		try {
+			pst = conn.prepareStatement(SQL_INSERE_RESTAURANTE);
+			pst.setString(1, umRestaurante.getNome());
+			ret = pst.execute();
+			pst.close();
+			CNXJDBC.fecharCNX();
+		}catch (SQLException e) {
+			System.out.println("Erro ao  executar o Statement "+e.toString());
+		}
+		return ret;
+	}
+	
+	public ArrayList<Restaurante> listarTodosRestaurantes(){
+		ArrayList<Restaurante> listaDeRestaurantes = new ArrayList<Restaurante>();
+		Connection conn = CNXJDBC.conectar();
+		Restaurante umRestaurante;
+		try {
+			pst = conn.prepareStatement(SQL_SELECIONA_RESTAURANTE);
+			ResultSet rs = pst.executeQuery();
+			while(rs.next()) {
+				umRestaurante = new Restaurante();
+				umRestaurante.setId(rs.getInt("ID"));
+				umRestaurante.setNome(rs.getString("NOME"));
+				listaDeRestaurantes.add(umRestaurante);
+			}
+			rs.close();
+			pst.close();
+			CNXJDBC.fecharCNX();
+		}catch (SQLException e) {
+			System.out.println("Erro ao  executar o Statement "+e.toString());
+		}
+		return listaDeRestaurantes;
+	}
+}
