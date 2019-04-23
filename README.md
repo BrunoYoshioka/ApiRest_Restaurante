@@ -17,3 +17,5 @@ o   Adicionar um novo restaurante
 o   Alterar um restaurante existente
 
 o   Remove um restaurante existente
+
+#Para  a execução, basta ir na classe Principal e Run As Run As > Java Application
